@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Botão de Compra</title>
+    <script>
+        const config = {
+            url: "https://google.com"
+        }
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+      .buy-button {
+        display: flex;
+        background-color: #44cb88;
+        color: white;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1% 2%;
+      }
+      .btn-text {
+        font-weight: bold;
+      }
+      .shipping-info {
+        font-size: 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="descounttime"></div>
+    <button class="buy-button" id="buyNowButton">
+      <p class="btn-text">SIM! EU QUERO COMPRAR AGORA</p>
+      <p class="shipping-info">
+        Frete grátis até às 23:59 de <span id="shippingDateText"></span>
+      </p>
+      <span id="shippingDate"></span>
+    </button>
+
+    <script>
+      var getdayNames = new Array(
+        "Domingo",
+        "Segunda-Feira",
+        "Terça-Feira",
+        "Quarta-Feira",
+        "Quinta-Feira",
+        "Sexta-Feira",
+        "Sábado"
+      );
+      var getdayMonth = new Array(
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro"
+      );
+      var getNow = new Date();
+      var dayOfTheWeek = getNow.getDay();
+      getNow.setTime(getNow.getTime() - 0 * 24 * 60 * 60 * 1000);
+      var shippingDate =
+        getNow.getDate() +
+        " de " +
+        getdayMonth[getNow.getMonth()] +
+        " de " +
+        getNow.getFullYear();
+      document.getElementById("shippingDateText").textContent = shippingDate;
+
+      const btn = document.querySelector('#buyNowButton')
+      btn.addEventListener('click', () => {
+        window.location.href = config.url
+      })
+    </script>
+  </body>
+</html>

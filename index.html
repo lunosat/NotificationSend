@@ -1,57 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-  <title>Notificações</title>
+  <meta charset="UTF-8">
+  <title>Exemplo de Notificações de Compra</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <style>
-    body {
+    .custom-toast {
+      background-color: #1b0ea9;
+      color: white;
       font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
     }
   </style>
 </head>
 <body>
-  <h1>Configurações de Notificação</h1>
-  <form id="notificationForm">
-    <label for="notificationTitle">Título:</label>
-    <input type="text" id="notificationTitle" name="title" placeholder="Título da Notificação" required>
-    <br><br>
-    <label for="notificationBody">Mensagem:</label>
-    <input type="text" id="notificationBody" name="body" placeholder="Mensagem da Notificação" required>
-    <br><br>
-    <label for="notificationInterval">Intervalo (em segundos):</label>
-    <input type="number" id="notificationInterval" name="interval" min="1" value="5" required>
-    <br><br>
-    <input type="submit" value="Iniciar Notificações">
-  </form>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
   <script>
-    document.getElementById('notificationForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      startNotifications();
-    });
+    const nomes = ["Fulano", "Beltrano", "Ciclano", "João", "Maria"];
+    let indice = 0;
 
-    function startNotifications() {
-      const title = document.getElementById('notificationTitle').value;
-      const body = document.getElementById('notificationBody').value;
-      const interval = document.getElementById('notificationInterval').value;
-
-      setInterval(function() {
-        if (Notification.permission === "granted") {
-          const notification = new Notification(title, {
-            body: body
-          });
-        } else if (Notification.permission !== "denied") {
-          Notification.requestPermission().then(function(permission) {
-            if (permission === "granted") {
-              const notification = new Notification(title, {
-                body: body
-              });
-            }
-          });
-        }
-      }, interval * 1000);
+    function exibirNotificacao() {
+      const nome = nomes[indice];
+      toastr.options.positionClass = "toast-bottom-right";
+      toastr.options.toastClass = "custom-toast";
+      toastr.success(nome + " comprou um ebook agora mesmo");
+      indice = (indice + 1) % nomes.length;
     }
+
+    setInterval(exibirNotificacao, 2000);
   </script>
 </body>
 </html>
