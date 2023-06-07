@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Notificações</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Configurações de Notificação</h1>
+  <form id="notificationForm">
+    <label for="notificationTitle">Título:</label>
+    <input type="text" id="notificationTitle" name="title" placeholder="Título da Notificação" required>
+    <br><br>
+    <label for="notificationBody">Mensagem:</label>
+    <input type="text" id="notificationBody" name="body" placeholder="Mensagem da Notificação" required>
+    <br><br>
+    <label for="notificationInterval">Intervalo (em segundos):</label>
+    <input type="number" id="notificationInterval" name="interval" min="1" value="5" required>
+    <br><br>
+    <input type="submit" value="Iniciar Notificações">
+  </form>
+
+  <script>
+    document.getElementById('notificationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      startNotifications();
+    });
+
+    function startNotifications() {
+      const title = document.getElementById('notificationTitle').value;
+      const body = document.getElementById('notificationBody').value;
+      const interval = document.getElementById('notificationInterval').value;
+
+      setInterval(function() {
+        if (Notification.permission === "granted") {
+          const notification = new Notification(title, {
+            body: body
+          });
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(function(permission) {
+            if (permission === "granted") {
+              const notification = new Notification(title, {
+                body: body
+              });
+            }
+          });
+        }
+      }, interval * 1000);
+    }
+  </script>
+</body>
+</html>
