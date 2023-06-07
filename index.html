@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Exemplo de Notificações de Compra</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-  <style>
-    .custom-toast {
-      background-color: #1b0ea9;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-  </style>
-</head>
-<body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nou</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+    />
+    <style>
+      .custom-toast {
+        background-color: #32a90e;
+        color: white;
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-  <script>
-    const nomes = ["Fulano", "Beltrano", "Ciclano", "João", "Maria"];
-    let indice = 0;
+    <script>
+      const nomes = [
+        "João",
+        "Maria",
+        "Pedro",
+        "Ana",
+        "Lucas",
+        "Beatriz",
+        "Carlos",
+        "Laura",
+        "Gustavo",
+        "Isabela",
+        "Rafael",
+        "Julia",
+        "Fernando",
+        "Mariana",
+        "Rodrigo",
+        "Camila",
+        "Diego",
+        "Gabriela",
+        "José",
+        "Amanda",
+        "Luiz",
+        "Letícia",
+        "Marcos",
+        "Carolina",
+        "André",
+        "Natália",
+        "Ricardo",
+        "Larissa",
+        "Antônio",
+        "Valentina",
+        "Daniel",
+        "Sophia",
+      ];
 
-    function exibirNotificacao() {
-      const nome = nomes[indice];
-      toastr.options.positionClass = "toast-bottom-right";
-      toastr.options.toastClass = "custom-toast";
-      toastr.success(nome + " comprou um ebook agora mesmo");
-      indice = (indice + 1) % nomes.length;
-    }
+      let indice = 0;
 
-    setInterval(exibirNotificacao, 2000);
-  </script>
-</body>
+      function exibirNotificacao() {
+        const nome = nomes[indice];
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.options.toastClass = "custom-toast";
+        toastr.options.preventDuplicates = true;
+        // toastr.options.masOpened = 2
+        toastr.success(nome + " comprou agora mesmo!");
+        indice = (indice + 1) % nomes.length;
+      }
+
+      setInterval(exibirNotificacao, 3000);
+    </script>
+  </body>
 </html>

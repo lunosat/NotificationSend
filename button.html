@@ -5,7 +5,7 @@
     <title>Botão de Compra</title>
     <script>
         const config = {
-            url: "https://google.com"
+            section: "#compra"
         }
     </script>
     <style>
@@ -81,8 +81,9 @@
       document.getElementById("shippingDateText").textContent = shippingDate;
 
       const btn = document.querySelector('#buyNowButton')
+      const section = document.querySelector(config.section)
       btn.addEventListener('click', () => {
-        window.location.href = config.url
+        section.scrollIntoView({ behavior: 'smooth' })
       })
     </script>
   </body>
